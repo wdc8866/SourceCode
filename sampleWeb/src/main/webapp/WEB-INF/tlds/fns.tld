@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+  version="2.0">
+    
+  <description>JSTL 1.1 functions library</description>
+  <display-name>JSTL functions sys</display-name>
+  <tlib-version>1.1</tlib-version>
+  <short-name>fns</short-name>
+  <uri>http://java.sun.com/jsp/jstl/functionss</uri>
+
+  <!-- UserUtils -->
+  <function>
+    <description>获取当前用户对象</description>
+    <name>getUser</name>
+    <function-class>com.yqjr.framework.utils.UserUtils</function-class>
+    <function-signature>com.yqjr.modules.user.model.UserModel getUser()</function-signature>
+    <example>${fns:getUser()}</example>  
+  </function>
+  
+  <!-- DictUtils -->
+  <function>
+    <description>获取字典标签</description>
+    <name>getDictLabel</name>
+    <function-class>com.yqjr.framework.component.dict.DictLoader</function-class>
+    <function-signature>java.lang.String getLabel(java.lang.String, java.lang.String)</function-signature>
+    <example>${fns:getDictLabel(type,value)}</example>  
+  </function>
+  
+  <function>
+    <description>获取字典值</description>
+    <name>getDictValue</name>
+    <function-class>com.yqjr.framework.component.dict.DictLoader</function-class>
+    <function-signature>java.lang.String getValue(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+    <example>${fns:getDictValue(type, label)}</example>  
+  </function>
+  
+  <function>
+    <description>获取字典对象列表</description>
+    <name>getDictList</name>
+    <function-class>com.yqjr.framework.component.dict.DictLoader</function-class>
+    <function-signature>java.util.List getDictsStatic(java.lang.String)</function-signature>
+    <example>${fns:getDictList(type)}</example>  
+  </function>
+  
+  <function>
+    <description>获取字典对象列表(用于构建jqGrid 类型转换)</description>
+    <name>getDictListForTable</name>
+    <function-class>com.yqjr.framework.component.dict.DictLoader</function-class>
+    <function-signature>java.lang.String getDictsForJQGird(java.lang.String)</function-signature>
+    <example>${fns:getDictList(type)}</example>  
+  </function>
+  
+ <!--  <function>
+    <description>获取字典对象列表</description>
+    <name>getDictListJson</name>
+    <function-class>com.yqjr.framework.component.dict.DictLoader</function-class>
+    <function-signature>java.lang.String getDictListJson(java.lang.String)</function-signature>
+    <example>${fns:getDictListJson(type)}</example>  
+  </function> -->
+  
+  <!-- DateUtils -->
+  <function>
+    <description>获取当前日期</description>
+    <name>getDate</name>
+    <function-class>com.yqjr.framework.utils.DateUtils</function-class>
+    <function-signature>java.lang.String getDate(java.lang.String)</function-signature>
+    <example>${fns:getDate(pattern)}</example>  
+  </function>
+  
+</taglib>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yqjr.framework.component.advisor.AdvisorSupportDao">
+
+	<insert id="saveTransactionInvoker">
+		<selectKey keyProperty="id" resultType="java.lang.Integer"
+			order="BEFORE">
+			select framework_sequence.nextval from dual
+		</selectKey>
+		INSERT INTO fmk_transactionlog
+		(ID, CLASSNAME, METHODNAME,
+		TRANSACTIONALKEY, TRANSACTIONTIME, TRANSLOCK)
+		values(
+		#{id},
+		#{className},
+		#{methodName},
+		#{transactionalKey},
+		#{transactionTime,jdbcType=TIMESTAMP,typeHandler=DateHandler},
+		#{lock}
+		)
+	</insert>
+
+	<insert id="saveRemoteInokers">
+		INSERT INTO fmk_transaction_detail
+		(ID,TRANSID,SERVICECODE,SERVICENAME,SERIALNO,INVOKETYPE,TRANSTYPE,REQUESTTIME,RESPONSETIME,REPLYCODE,REPLYTEXT,INVOKESTATUS)
+		<foreach collection="list" item="invoker" separator=" union all ">
+			SELECT
+			#{invoker.id},
+			#{invoker.transactionInvoker.id},
+			#{invoker.serviceCode},
+			#{invoker.serviceName},
+			#{invoker.serialNo},
+			#{invoker.invokeType},
+			#{invoker.transType},
+			#{invoker.requestTime,jdbcType=TIMESTAMP,typeHandler=DateHandler},
+			#{invoker.responseTime,jdbcType=TIMESTAMP,typeHandler=DateHandler},
+			#{invoker.replyCode},
+			#{invoker.replyText},
+			#{invoker.invokeStatus}
+			FROM dual
+		</foreach>
+	</insert>
+
+	<select id="getTransactionInvoker" resultType="long"
+		parameterType="com.yqjr.framework.component.advisor.TransactionInvoker">
+		SELECT COUNT(1)
+		FROM fmk_transactionlog
+		WHERE
+		CLASSNAME =
+		#{className}
+		AND
+		METHODNAME =
+		#{methodName}
+		AND
+		TRANSACTIONALKEY =
+		#{transactionalKey}
+		AND
+		TRANSLOCK = 1
+	</select>
+
+</mapper>

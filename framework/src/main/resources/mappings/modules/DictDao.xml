@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yqjr.modules.dict.dao.DictDao">
+	<resultMap id="BaseResultMap" type="com.yqjr.modules.dict.entity.Dict">
+		<result column="PARENTID" jdbcType="DECIMAL" property="parent.id" />
+		<result column="PARENTIDS" jdbcType="VARCHAR" property="parentIds" />
+		<result column="SORT" jdbcType="DECIMAL" property="sort" />
+		<result column="VALUE" jdbcType="VARCHAR" property="value" />
+		<result column="LABEL" jdbcType="VARCHAR" property="label" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+		<result column="CREATEBY" jdbcType="DECIMAL" property="createBy.id" />
+		<result column="CREATEDATE" jdbcType="TIMESTAMP" property="createDate"
+			typeHandler="DateHandler" />
+		<result column="UPDATEBY" jdbcType="DECIMAL" property="updateBy.id" />
+		<result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updateDate"
+			typeHandler="DateHandler" />
+		<result column="DELETESTATUS" jdbcType="DECIMAL" property="deleteStatus" />
+		<result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, PARENTID, PARENTIDS, SORT, VALUE, LABEL, TYPE, CREATEBY, CREATEDATE,
+		UPDATEBY,
+		UPDATEDATE, DELETESTATUS, REMARKS
+	</sql>
+	<sql id="Base_Where_Condition">
+		<where>
+			<if test="id != null">
+				and ID = #{id,jdbcType=DECIMAL}
+			</if>
+			<if test="parent != null">
+				and PARENTID = #{parent.id,jdbcType=DECIMAL}
+			</if>
+			<if test="parentIds != null">
+				and PARENTIDS = #{parentIds,jdbcType=VARCHAR}
+			</if>
+			<if test="sort != null">
+				and SORT = #{sort,jdbcType=DECIMAL}
+			</if>
+			<if test="value != null">
+				and VALUE = #{value,jdbcType=VARCHAR}
+			</if>
+			<if test="label != null">
+				and LABEL = #{label,jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				and TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				and CREATEBY = #{createBy.id}
+			</if>
+			<if test="createDate != null">
+				and CREATEDATE =
+				#{createDate,jdbcType=TIMESTAMP,typeHandler=DateHandler}
+			</if>
+			<if test="updateBy != null">
+				and UPDATEBY = #{updateBy.id}
+			</if>
+			<if test="updateDate != null">
+				and UPDATEDATE =
+				#{updateDate,jdbcType=TIMESTAMP,typeHandler=DateHandler}
+			</if>
+			<if test="deleteStatus != null">
+				and DELETESTATUS = #{deleteStatus,jdbcType=DECIMAL}
+			</if>
+			<if test="remarks != null">
+				and REMARKS = #{remarks,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+	<insert id="insert" parameterType="com.yqjr.modules.dict.entity.Dict">
+		insert into FMK_DICT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="parent != null">
+				PARENTID,
+			</if>
+			<if test="parentIds != null">
+				PARENTIDS,
+			</if>
+			<if test="sort != null">
+				SORT,
+			</if>
+			<if test="value != null">
+				VALUE,
+			</if>
+			<if test="label != null">
+				LABEL,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="createBy != null">
+				CREATEBY,
+			</if>
+			<if test="createDate != null">
+				CREATEDATE,
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY,
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE,
+			</if>
+			<if test="deleteStatus != null">
+				DELETESTATUS,
+			</if>
+			<if test="remarks != null">
+				REMARKS,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=DECIMAL},
+			</if>
+			<if test="parent != null">
+				#{parent.id,jdbcType=DECIMAL},
+			</if>
+			<if test="parentIds != null">
+				#{parentIds,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=DECIMAL},
+			</if>
+			<if test="value != null">
+				#{value,jdbcType=VARCHAR},
+			</if>
+			<if test="label != null">
+				#{label,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy.id},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP,typeHandler=DateHandler},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy.id},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP,typeHandler=DateHandler},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=DECIMAL},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="update" parameterType="com.yqjr.modules.dict.entity.Dict">
+		update FMK_DICT
+		<set>
+			<if test="parent != null">
+				PARENTID = #{parent.id,jdbcType=DECIMAL},
+			</if>
+			<if test="parentIds != null">
+				PARENTIDS = #{parentIds,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort,jdbcType=DECIMAL},
+			</if>
+			<if test="value != null">
+				VALUE = #{value,jdbcType=VARCHAR},
+			</if>
+			<if test="label != null">
+				LABEL = #{label,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY = #{createBy.id},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE = #{createDate,jdbcType=TIMESTAMP,typeHandler=DateHandler},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy.id},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate,jdbcType=TIMESTAMP,typeHandler=DateHandler},
+			</if>
+			<if test="deleteStatus != null">
+				DELETESTATUS = #{deleteStatus,jdbcType=DECIMAL},
+			</if>
+			<if test="remarks != null">
+				REMARKS = #{remarks,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	<update id="delete" parameterType="com.yqjr.modules.dict.entity.Dict">
+		update FMK_DICT
+		<set>
+			deleteStatus = 0,
+			<if test="updateBy != null">
+				updateBy = #{updateBy.id},
+			</if>
+			<if test="updateDate != null">
+				updateDate = #{updateDate,jdbcType=TIMESTAMP,typeHandler=DateHandler}
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	<select id="id" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from FMK_DICT
+		<if test="_parameter != null">
+			where id = #{id}
+		</if>
+	</select>
+	<select id="get" parameterType="com.yqjr.modules.dict.entity.Dict"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from FMK_DICT
+		<if test="_parameter != null">
+			<include refid="Base_Where_Condition" />
+		</if>
+	</select>
+	<select id="findList" parameterType="com.yqjr.modules.dict.entity.Dict"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from FMK_DICT
+		<if test="_parameter != null">
+			<include refid="Base_Where_Condition" />
+		</if>
+		ORDER BY TYPE,SORT
+	</select>
+	<select id="findByCondition" parameterType="com.yqjr.modules.dict.condition.DictCondition"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from FMK_DICT
+		<if test="_parameter != null">
+			<where>
+				<if test="parent != null">
+					and PARENTID = #{parent.id,jdbcType=DECIMAL}
+				</if>
+				<if test="parentIds != null">
+					and PARENTIDS = #{parentIds,jdbcType=VARCHAR}
+				</if>
+				<if test="sort != null">
+					and SORT = #{sort,jdbcType=DECIMAL}
+				</if>
+				<if test="value != null">
+					and VALUE = #{value,jdbcType=VARCHAR}
+				</if>
+				<if test="label != null">
+					and LABEL = #{label,jdbcType=VARCHAR}
+				</if>
+				<if test="type != null">
+					and TYPE = #{type,jdbcType=VARCHAR}
+				</if>
+				<if test="deleteStatus != null">
+					and DELETESTATUS = #{deleteStatus,jdbcType=DECIMAL}
+				</if>
+				<if test="startDate != null">
+          <![CDATA[  and updateDate >= TO_DATE(#{startDate},'yyyy-mm-dd') ]]>
+				</if>
+				<if test="endDate != null">
+          <![CDATA[  and updateDate < TO_DATE(#{endDate},'yyyy-mm-dd')+1 ]]>
+				</if>
+				<if test="userId > 0">
+					and createBy = #{userId}
+				</if>
+			</where>
+		</if>
+	</select>
+	<select id="findForTree" resultType="java.util.HashMap">
+		SELECT t1.id,
+		       t1.label,
+		       t1.type,
+		       t1.value,
+		       t1.parentid,
+		       t1.parentids,
+		       (SELECT count(t2.id) count FROM FMK_DICT t2 WHERE t2.parentid = t1.id and t2.DELETESTATUS = 1) counts
+		FROM FMK_DICT t1 
+		WHERE 
+			t1.parentid = #{parentId} and t1.DELETESTATUS = 1
+		ORDER BY t1.type ,t1.sort 
+  	</select>
+	 <select id="findByParentIdsLike" resultMap="BaseResultMap">
+		SELECT
+			a.id,
+			a.parentid AS "parent.id",
+			a.parentids
+		FROM FMK_DICT a
+		WHERE a.parentids LIKE #{parentIds}
+		ORDER BY a.sort
+	</select>
+  <update id="updateParentIds">
+		UPDATE FMK_DICT SET 
+			parentid = #{parent.id}, 
+			parentids = #{parentIds}
+		WHERE id = #{id}
+  </update>
+</mapper>

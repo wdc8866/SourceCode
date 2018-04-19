@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yqjr.modules.role.dao.RoleDao">
+  <resultMap id="BaseResultMap" type="com.yqjr.modules.role.entity.Role">
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ENNAME" jdbcType="VARCHAR" property="enName" />
+    <result column="ROLE_TYPE" jdbcType="VARCHAR" property="roleType" />
+    <result column="DATA_SCOPE" jdbcType="CHAR" property="dataScope" />
+    <result column="IS_SYS" jdbcType="VARCHAR" property="isSys" />
+    <result column="USEABLE" jdbcType="VARCHAR" property="useable" />
+    <result column="CREATEBY" jdbcType="DECIMAL" property="createBy.id" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createDate" typeHandler="com.yqjr.framework.datatype.DateTypeHandler" />
+    <result column="UPDATEBY" jdbcType="DECIMAL" property="updateBy.id" />
+    <result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updateDate" typeHandler="com.yqjr.framework.datatype.DateTypeHandler" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="DELETESTATUS" jdbcType="DECIMAL" property="deleteStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, ENNAME, ROLE_TYPE, DATA_SCOPE, IS_SYS, USEABLE, CREATEBY, CREATEDATE, UPDATEBY, 
+    UPDATEDATE, REMARKS, DELETESTATUS
+  </sql>
+  <sql id="Base_Where_Condition">
+    <where>
+      <if test="id != null">
+        and ID = #{id,jdbcType=DECIMAL}
+      </if>
+      <if test="name != null">
+        and NAME = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="enName != null">
+        and ENNAME = #{enName,jdbcType=VARCHAR}
+      </if>
+      <if test="roleType != null">
+        and ROLE_TYPE = #{roleType,jdbcType=VARCHAR}
+      </if>
+      <if test="dataScope != null">
+        and DATA_SCOPE = #{dataScope,jdbcType=CHAR}
+      </if>
+      <if test="isSys != null">
+        and IS_SYS = #{isSys,jdbcType=VARCHAR}
+      </if>
+      <if test="useable != null">
+        and USEABLE = #{useable,jdbcType=VARCHAR}
+      </if>
+      <if test="createBy != null">
+        and CREATEBY = #{createBy.id,jdbcType=DECIMAL}
+      </if>
+      <if test="createDate != null">
+        and CREATEDATE = #{createDate,jdbcType=TIMESTAMP,typeHandler=com.yqjr.framework.datatype.DateTypeHandler}
+      </if>
+      <if test="updateBy != null">
+        and UPDATEBY = #{updateBy.id,jdbcType=DECIMAL}
+      </if>
+      <if test="updateDate != null">
+        and UPDATEDATE = #{updateDate,jdbcType=TIMESTAMP,typeHandler=com.yqjr.framework.datatype.DateTypeHandler}
+      </if>
+      <if test="remarks != null">
+        and REMARKS = #{remarks,jdbcType=VARCHAR}
+      </if>
+      <if test="deleteStatus != null">
+        and DELETESTATUS = #{deleteStatus,jdbcType=DECIMAL}
+      </if>
+    </where>
+  </sql>
+  <insert id="insert" parameterType="com.yqjr.modules.role.entity.Role">
+    insert into FMK_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="enName != null">
+        ENNAME,
+      </if>
+      <if test="roleType != null">
+        ROLE_TYPE,
+      </if>
+      <if test="dataScope != null">
+        DATA_SCOPE,
+      </if>
+      <if test="isSys != null">
+        IS_SYS,
+      </if>
+      <if test="useable != null">
+        USEABLE,
+      </if>
+      <if test="createBy != null">
+        CREATEBY,
+      </if>
+      <if test="createDate != null">
+        CREATEDATE,
+      </if>
+      <if test="updateBy != null">
+        UPDATEBY,
+      </if>
+      <if test="updateDate != null">
+        UPDATEDATE,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETESTATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null">
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null">
+        #{roleType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataScope != null">
+        #{dataScope,jdbcType=CHAR},
+      </if>
+      <if test="isSys != null">
+        #{isSys,jdbcType=VARCHAR},
+      </if>
+      <if test="useable != null">
+        #{useable,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy.id,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP,typeHandler=com.yqjr.framework.datatype.DateTypeHandler},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy.id,jdbcType=DECIMAL},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP,typeHandler=com.yqjr.framework.datatype.DateTypeHandler},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.yqjr.modules.role.entity.Role">
+    update FMK_ROLE
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null">
+        ENNAME = #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null">
+        ROLE_TYPE = #{roleType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataScope != null">
+        DATA_SCOPE = #{dataScope,jdbcType=CHAR},
+      </if>
+      <if test="isSys != null">
+        IS_SYS = #{isSys,jdbcType=VARCHAR},
+      </if>
+      <if test="useable != null">
+        USEABLE = #{useable,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATEBY = #{createBy.id,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null">
+        CREATEDATE = #{createDate,jdbcType=TIMESTAMP,typeHandler=com.yqjr.framework.datatype.DateTypeHandler},
+      </if>
+      <if test="updateBy != null">
+        UPDATEBY = #{updateBy.id,jdbcType=DECIMAL},
+      </if>
+      <if test="updateDate != null">
+        UPDATEDATE = #{updateDate,jdbcType=TIMESTAMP,typeHandler=com.yqjr.framework.datatype.DateTypeHandler},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETESTATUS = #{deleteStatus,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <where>
+      id = #{id}
+    </where>
+  </update>
+  <update id="delete" parameterType="com.yqjr.modules.role.entity.Role">
+    update FMK_ROLE
+    <set>
+      deleteStatus = 0,
+      <if test="updateBy != null">
+        updateBy = #{updateBy.id},
+      </if>
+      <if test="updateDate != null">
+        updateDate = #{updateDate,jdbcType=TIMESTAMP,typeHandler=com.yqjr.framework.datatype.DateTypeHandler}
+      </if>
+    </set>
+    <where>
+      id = #{id}
+    </where>
+  </update>
+  <select id="id" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from FMK_ROLE
+    <if test="_parameter != null">
+      where id = #{id}
+    </if>
+  </select>
+  <select id="get" parameterType="com.yqjr.modules.role.entity.Role" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from FMK_ROLE
+    <if test="_parameter != null">
+      <include refid="Base_Where_Condition" />
+    </if>
+  </select>
+  <select id="findList" parameterType="com.yqjr.modules.role.entity.Role" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from FMK_ROLE
+    <if test="_parameter != null">
+      <include refid="Base_Where_Condition" />
+    </if>
+  </select>
+  <select id="findByCondition" parameterType="com.yqjr.modules.role.condition.RoleCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from FMK_ROLE R
+    <if test="_parameter != null">
+      <where>
+        <if test="name != null">
+           and R.NAME = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="enName != null">
+           and R.ENNAME = #{enName,jdbcType=VARCHAR}
+        </if>
+        <if test="roleType != null">
+           and R.ROLE_TYPE = #{roleType,jdbcType=VARCHAR}
+        </if>
+        <if test="dataScope != null">
+           and R.DATA_SCOPE = #{dataScope,jdbcType=CHAR}
+        </if>
+        <if test="isSys != null">
+           and R.IS_SYS = #{isSys,jdbcType=VARCHAR}
+        </if>
+        <if test="useable != null">
+           and R.USEABLE = #{useable,jdbcType=VARCHAR}
+        </if>
+        <if test="deleteStatus != null">
+           and R.DELETESTATUS = #{deleteStatus,jdbcType=DECIMAL}
+        </if>
+        <if test="startDate != null">
+          <![CDATA[  and R.updateDate >= TO_DATE(#{startDate},'yyyy-mm-dd') ]]> 
+        </if>
+        <if test="endDate != null">
+          <![CDATA[  and R.updateDate < TO_DATE(#{endDate},'yyyy-mm-dd')+1 ]]> 
+        </if>
+        <if test="userId > 0">
+          and R.createBy = #{userId}
+        </if>
+      </where>
+    </if>
+  </select>
+  <select id="findListByUser" parameterType="com.yqjr.modules.role.entity.Role" resultMap="BaseResultMap">
+    select distinct 
+    <include refid="Base_Column_List" />
+    from FMK_ROLE R,FMK_ROLE_USER RU
+    <if test="_parameter != null">
+   	  <where>
+      	RU.USER_ID = ${id} AND RU.ROLE_ID = R.ID
+      </where>
+    </if>
+  </select>
+  <delete id="deleteRoleMenu">
+	DELETE FROM fmk_role_menu WHERE role_id = #{id}
+  </delete>
+  <insert id="insertRoleMenu">
+	INSERT INTO fmk_role_menu(role_id, menu_id)
+	<foreach collection="menuList" item="menu" separator=" union all ">
+		SELECT #{role.id}, #{menu.id} FROM dual
+	</foreach>
+  </insert>
+</mapper>

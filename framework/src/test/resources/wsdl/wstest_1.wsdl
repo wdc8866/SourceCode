@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ITestWebServiceService" targetNamespace="http://demo.webservice.yqjr.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://demo.webservice.yqjr.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://demo.webservice.yqjr.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="transTest" type="tns:transTest"/>
+      <xs:element name="transTestResponse" type="tns:transTestResponse"/>
+      <xs:complexType name="transTest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="header" type="tns:testHeader"/>
+          <xs:element minOccurs="0" name="request" type="tns:testRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="testHeader">
+        <xs:complexContent>
+          <xs:extension base="tns:baseHeader">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="extHeader" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="baseHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="serialNo" type="xs:string"/>
+          <xs:element minOccurs="0" name="channel" type="xs:string"/>
+          <xs:element minOccurs="0" name="serviceCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="transactionTime" type="xs:string"/>
+          <xs:element minOccurs="0" name="token" type="xs:string"/>
+          <xs:element minOccurs="0" name="replyCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="replyText" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="testRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseRequestDTO">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data1" type="xs:string"/>
+              <xs:element minOccurs="0" name="date2" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="baseRequestDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:baseBean">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="baseBean">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="transTestResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="header" type="tns:testHeader"/>
+          <xs:element minOccurs="0" name="response" type="tns:testResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="testResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseResponseDTO">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data3" type="xs:string"/>
+              <xs:element minOccurs="0" name="data4" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="baseResponseDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:baseBean">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="transTest">
+    <wsdl:part element="tns:transTest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="transTestResponse">
+    <wsdl:part element="tns:transTestResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="ITestWebService">
+    <wsdl:operation name="transTest">
+      <wsdl:input message="tns:transTest" name="transTest"/>
+      <wsdl:output message="tns:transTestResponse" name="transTestResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ITestWebServiceServiceSoapBinding" type="tns:ITestWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="transTest">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="transTest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="transTestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ITestWebServiceService">
+    <wsdl:port binding="tns:ITestWebServiceServiceSoapBinding" name="ITestWebServicePort">
+      <soap:address location="http://localhost:8080/sampleWeb/services/wstest"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
